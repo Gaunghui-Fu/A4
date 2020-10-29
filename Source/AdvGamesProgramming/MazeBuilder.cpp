@@ -35,8 +35,10 @@ void AMazeBuilder::BeginPlay()
    Generatefloor();
    GenerateMaze();
    const FVector loaction = FVector(mapLength - 100.0f, MapWidth - 100.0f, 0.0f);
+
    const FRotator rotaction = GetActorRotation();
    GetWorld()->SpawnActor<AActor>(endgame, loaction, rotaction);
+   
 
  WallMeshs->CreateMeshSection(0, WallVertices, WallTriangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
     

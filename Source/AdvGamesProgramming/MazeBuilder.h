@@ -48,6 +48,9 @@ public:
     float doorwidth;
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
         TSubclassOf<AActor> endgame;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<AActor> pickup;
+
     int totalVertices;
     
     int RoomID;

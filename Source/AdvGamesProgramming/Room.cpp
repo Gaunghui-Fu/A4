@@ -30,7 +30,8 @@ void ARoom::GenEnemy()
     NewEnemy->SetRoom(this);
     HasEnemy = true;
     UE_LOG(LogTemp, Display, TEXT("GenEnemy"));
-
+	AActor* newpickpoint = GetWorld()->SpawnActor<AActor>(pickup_point, GenRandomPos(), FRotator(0.0f, 0.f, 0.f));
+	
 }
 FVector ARoom::GenRandomPos()
 {

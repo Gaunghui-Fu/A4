@@ -40,7 +40,8 @@ public:
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<AEnemyCharacter> Enemy;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<AActor> pickup_point;
 
     
     
