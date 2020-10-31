@@ -5,8 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Room.h"
+#include "MazeWall.h"
 #include "EnemyCharacter.h"
 #include "KismetProceduralMeshLibrary.h"
+#include "Materials/Material.h"
+#include "Materials/MaterialInstance.h"
 #include "MazeBuilder.generated.h"
 
 UCLASS()
@@ -26,11 +29,17 @@ public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+     UMaterialInterface* floorMaterial;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+     UMaterialInterface* WallMaterial;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       UStaticMesh* wallTop;
     
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     UProceduralMeshComponent* FloorMesh;
-    UPROPERTY(VisibleAnywhere)
-     UProceduralMeshComponent* WallMeshs;
+    //UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    //UProceduralMeshComponent* WallMeshs;
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float MapWidth;
@@ -50,10 +59,15 @@ public:
         TSubclassOf<AActor> endgame;
     int totalVertices;
     
+    int section;
+    
     int RoomID;
     
-    TArray<FVector> WallVertices;
-    TArray<int32> WallTriangles;
+//    TArray<FVector> WallVertices;
+//    TArray<int32> WallTriangles;
+//    TArray<FVector2D> WallUVCoords;
+//    TArray<FVector> WallNormals;
+//    TArray<FProcMeshTangent> WallTangents;
 
     TArray<ARoom*> Rooms;
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -62,6 +76,8 @@ public:
      UPROPERTY(EditAnywhere, BlueprintReadWrite)
      TSubclassOf<AEnemyCharacter> Enemy;
     
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSubclassOf<AMazeWall> BPWalls;
     void GenerateMaze();
     
     void GenerateWalls(float far,float close,float left,float right);
@@ -74,6 +90,9 @@ public:
     void ClearMeshData();
     
     void MazeSplit(FVector2D botleft,FVector2D TopRight);
+    
+    void GenWallTop(FVector pos,bool HorOrVer);
+
     
     void AddTriangle(int32 V1, int32 V2, int32 V3);
 
